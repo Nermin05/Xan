@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Honeypot Dashboard</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-8 p-3">
+      <h4>Events</h4>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Time</th>
+            <th>Attack</th>
+            <th>Confidence</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for e in events %}
+          <tr>
+            <td>{{ e.detected_at }}</td>
+            <td>{{ e.attack_family }} ({{ e.mitre_id }})</td>
+            <td>{{ e.confidence }}</td>
+          </tr>
+          {% empty %}
+          <tr><td colspan="3">No events</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <div class="col-4 bg-light vh-100 p-3">
+      <h5>Generated Rules</h5>
+      <ul class="list-group">
+        {% for r in rules %}
+        <li class="list-group-item">
+          {{ r.created_at }}<br>
+          <small>{{ r.rule_text|truncatechars:80 }}</small>
+        </li>
+        {% empty %}
+        <li class="list-group-item">No rules</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>
+</body>
+</html>

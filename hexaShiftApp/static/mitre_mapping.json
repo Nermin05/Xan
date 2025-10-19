@@ -1,0 +1,5 @@
+{
+  "T1003": ["mimikatz", "lsass", "credential dump"],
+  "T1059": ["powershell", "cmd.exe", "command execution"],
+  "T1040": ["port scan", "nmap", "masscan"]
+}
