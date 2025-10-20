@@ -10,8 +10,8 @@
   <div class="row">
     <div class="col-8 p-3">
       <h4>Events</h4>
-      <table class="table">
-        <thead>
+      <table class="table table-bordered table-hover">
+        <thead class="table-dark">
           <tr>
             <th>Time</th>
             <th>Attack</th>
@@ -25,8 +25,8 @@
             <td>{{ e.attack_family }} ({{ e.mitre_id }})</td>
             <td>{{ e.confidence }}</td>
           </tr>
-          {% empty %}
-          <tr><td colspan="3">No events</td></tr>
+          {% else %}
+          <tr><td colspan="3" class="text-center">No events</td></tr>
           {% endfor %}
         </tbody>
       </table>
@@ -38,10 +38,10 @@
         {% for r in rules %}
         <li class="list-group-item">
           {{ r.created_at }}<br>
-          <small>{{ r.rule_text|truncatechars:80 }}</small>
+          <small>{{ r.rule_text }}</small>
         </li>
-        {% empty %}
-        <li class="list-group-item">No rules</li>
+        {% else %}
+        <li class="list-group-item text-muted">No rules</li>
         {% endfor %}
       </ul>
     </div>
